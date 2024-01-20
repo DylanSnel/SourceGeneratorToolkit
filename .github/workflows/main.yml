@@ -1,0 +1,39 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 7.0.x
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y.%m.%d%H%M')"
+    - name: Say current date
+      run: echo "${{ steps.date.outputs.date }}"
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: Source/SourceGeneratorToolkit
+    - name: Build
+      run: dotnet build -c Release --no-restore
+      working-directory: Source/SourceGeneratorToolkit
+    - name: Test
+      run: dotnet test --verbosity normal
+      working-directory: Source/SourceGeneratorToolkit
+    - name: Pack
+      run: dotnet pack -c Release -p:PackageVersion=1.${{ steps.date.outputs.date }}
+      working-directory: Source/SourceGeneratorToolkit
+    - name: push
+      run:  dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      working-directory: Source/SourceGeneratorToolkit
