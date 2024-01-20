@@ -24,16 +24,16 @@ jobs:
       run: echo "${{ steps.date.outputs.date }}"
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: Source/SourceGeneratorToolkit
+      working-directory: Source/SourceGeneratorsToolkit
     - name: Build
       run: dotnet build -c Release --no-restore
-      working-directory: Source/SourceGeneratorToolkit
+      working-directory: Source/SourceGeneratorsToolkit
     - name: Test
       run: dotnet test --verbosity normal
-      working-directory: Source/SourceGeneratorToolkit
+      working-directory: Source/SourceGeneratorsToolkit
     - name: Pack
       run: dotnet pack -c Release -p:PackageVersion=1.${{ steps.date.outputs.date }}
-      working-directory: Source/SourceGeneratorToolkit
+      working-directory: Source/SourceGeneratorsToolkit
     - name: push
       run:  dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      working-directory: Source/SourceGeneratorToolkit
+      working-directory: Source/SourceGeneratorsToolkit
