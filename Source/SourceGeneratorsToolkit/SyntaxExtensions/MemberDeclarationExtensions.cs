@@ -13,5 +13,5 @@ public static class MemberDeclarationExtensions
     public static bool HasAttribute<TAttribute>(this MemberDeclarationSyntax memberDeclarationSyntax)
     {
         return Attributes(memberDeclarationSyntax).Any(x => x.Matches<TAttribute>());
-
     }
+}
