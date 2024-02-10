@@ -25,6 +25,4 @@ public static class TypeDeclarationExtensions
     {
         return classDeclarationSyntax.IsSealed() ? "sealed " : "";
     }
-
-
 }
