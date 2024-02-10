@@ -110,7 +110,7 @@ public static class FindByAttributeProviders
     public static IncrementalValuesProvider<TReturn> HandleFindAttributesProvide<TType, TReturn>(this IncrementalGeneratorInitializationContext context,
                                                             Type attributeType,
                                                             Func<SyntaxNode, CancellationToken, bool>? additionalPredicate,
-                                                            Func<TypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
+                                                            Func<TypeAttributeSyntaxContext, CancellationToken, TReturn?> transform,
                                                             IncrementalValueProvider<ImmutableArray<AttributeSyntaxContext>>? attributeProvider = null)
                                                             where TType : MemberDeclarationSyntax
     {
