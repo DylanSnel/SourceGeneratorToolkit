@@ -25,4 +25,14 @@ public static class TypeDeclarationExtensions
     {
         return classDeclarationSyntax.IsSealed() ? "sealed " : "";
     }
+
+    public static bool IsAbstract(this TypeDeclarationSyntax classDeclarationSyntax)
+    {
+        return classDeclarationSyntax.Modifiers.Any(x => x.IsKind(SyntaxKind.AbstractKeyword));
+    }
+
+    public static List<ConstructorDeclarationSyntax> GetConstructors(this TypeDeclarationSyntax classDeclarationSyntax)
+    {
+        return classDeclarationSyntax.Members.OfType<ConstructorDeclarationSyntax>().ToList();
+    }
 }

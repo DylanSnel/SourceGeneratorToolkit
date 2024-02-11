@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 
-namespace SourceGeneratorsToolkit;
+namespace SourceGeneratorsToolkit.Providers;
 
 
 public class OptionsProvider
@@ -18,7 +18,7 @@ public class OptionsProvider
     public T GetOption<T>(string key, T defaultValue)
     {
         var option = _provider.GlobalOptions.TryGetValue(_prefix + key, out var value) ? value : null;
-        return option is null ? defaultValue : (T)Convert.ChangeType(option, typeof(T));
+        return string.IsNullOrEmpty(option) ? defaultValue : (T)Convert.ChangeType(option, typeof(T));
     }
 }
 
