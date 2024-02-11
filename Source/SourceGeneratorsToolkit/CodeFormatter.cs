@@ -10,12 +10,11 @@ public static class CodeFormatter
     /// </summary>
     /// <param name="sourceCode"></param>
     /// <returns>The formatted code</returns>
-    public static string FormatSourceCode(string sourceCode)
+    public static string FormatSourceCode(string sourceCode, int spacesPerIndent = 4)
     {
         var formattedCode = new StringBuilder();
         int indentationLevel = 0;
         bool lambda = false;
-        const int spacesPerIndent = 4; // Adjust this to match your desired indentation width
 
         foreach (var line in sourceCode.Split(['\r', '\n']))
         {
