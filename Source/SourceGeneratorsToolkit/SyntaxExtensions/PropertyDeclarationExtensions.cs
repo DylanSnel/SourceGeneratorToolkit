@@ -48,7 +48,7 @@ public static class PropertyDeclarationExtensions
 
     public static string GetReturnType(this PropertyDeclarationSyntax propertyDeclarationSyntax)
     {
-        return propertyDeclarationSyntax.Type.ToString();
+        return propertyDeclarationSyntax.Type.ToString().Replace("String", "string");
     }
 
 
