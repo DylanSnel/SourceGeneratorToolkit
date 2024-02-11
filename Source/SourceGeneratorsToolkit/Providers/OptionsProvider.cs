@@ -17,8 +17,18 @@ public class OptionsProvider
 
     public T GetOption<T>(string key, T defaultValue)
     {
-        var option = _provider.GlobalOptions.TryGetValue(_prefix + key, out var value) ? value : null;
-        return string.IsNullOrEmpty(option) ? defaultValue : (T)Convert.ChangeType(option, typeof(T));
+        if (_provider.GlobalOptions.TryGetValue(_prefix + key, out var value))
+        {
+            try
+            {
+                return (T)Convert.ChangeType(value, typeof(T));
+            }
+            catch (Exception ex) when (ex is FormatException || ex is InvalidCastException)
+            {
+                return defaultValue;
+            }
+        }
+        return defaultValue;
     }
 }
 
