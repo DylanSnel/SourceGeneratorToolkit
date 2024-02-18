@@ -67,19 +67,19 @@ public static class FindByAttributeProviders
         }
     }
 
-    public static IncrementalValuesProvider<TypeAttributeSyntaxContext> FindAttributesProvider<TAttribute, TType>(this IncrementalGeneratorInitializationContext context) where TAttribute : Attribute where TType : MemberDeclarationSyntax
-    => context.FindAttributesProvider<TAttribute, TType, TypeAttributeSyntaxContext>((ctx, _) => ctx);
+    public static IncrementalValuesProvider<ResultTypeAttributeSyntaxContext> FindAttributesProvider<TAttribute, TType>(this IncrementalGeneratorInitializationContext context) where TAttribute : Attribute where TType : MemberDeclarationSyntax
+    => context.FindAttributesProvider<TAttribute, TType, ResultTypeAttributeSyntaxContext>((ctx, _) => ctx);
 
-    public static IncrementalValuesProvider<TypeAttributeSyntaxContext> FindAttributesProvider<TAttribute, TType>(this IncrementalGeneratorInitializationContext context, Func<SyntaxNode, CancellationToken, bool> additionalPredicate) where TAttribute : Attribute where TType : MemberDeclarationSyntax
-    => context.FindAttributesProvider<TAttribute, TType, TypeAttributeSyntaxContext>(additionalPredicate: additionalPredicate, transform: (ctx, _) => ctx);
+    public static IncrementalValuesProvider<ResultTypeAttributeSyntaxContext> FindAttributesProvider<TAttribute, TType>(this IncrementalGeneratorInitializationContext context, Func<SyntaxNode, CancellationToken, bool> additionalPredicate) where TAttribute : Attribute where TType : MemberDeclarationSyntax
+    => context.FindAttributesProvider<TAttribute, TType, ResultTypeAttributeSyntaxContext>(additionalPredicate: additionalPredicate, transform: (ctx, _) => ctx);
 
     public static IncrementalValuesProvider<TReturn> FindAttributesProvider<TAttribute, TType, TReturn>(this IncrementalGeneratorInitializationContext context,
-                                                                   Func<TypeAttributeSyntaxContext, CancellationToken, TReturn> transform) where TAttribute : Attribute where TType : MemberDeclarationSyntax
+                                                                   Func<ResultTypeAttributeSyntaxContext, CancellationToken, TReturn> transform) where TAttribute : Attribute where TType : MemberDeclarationSyntax
         => context.FindAttributesProvider<TAttribute, TType, TReturn>(null, transform);
 
     public static IncrementalValuesProvider<TReturn> FindAttributesProvider<TAttribute, TType, TReturn>(this IncrementalGeneratorInitializationContext context,
                                                                     Func<SyntaxNode, CancellationToken, bool>? additionalPredicate,
-                                                                    Func<TypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
+                                                                    Func<ResultTypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
                                                                     IncrementalValueProvider<ImmutableArray<AttributeSyntaxContext>>? attributeProvider = null) where TAttribute : Attribute where TType : MemberDeclarationSyntax
     {
         return context.HandleFindAttributesProvide<TType, TReturn>(typeof(TAttribute), additionalPredicate, transform, attributeProvider);
@@ -87,7 +87,7 @@ public static class FindByAttributeProviders
 
     }
     public static IncrementalValuesProvider<TReturn> FindAttributesProvider<TAttribute, TType, TReturn>(this IncrementalGeneratorInitializationContext context,
-                                                                   Func<TypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
+                                                                   Func<ResultTypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
                                                                    IncrementalValueProvider<ImmutableArray<AttributeSyntaxContext>>? attributeProvider = null) where TAttribute : Attribute where TType : MemberDeclarationSyntax
     {
         return context.HandleFindAttributesProvide<TType, TReturn>(typeof(TAttribute), null, transform, attributeProvider);
@@ -99,7 +99,7 @@ public static class FindByAttributeProviders
     public static IncrementalValuesProvider<TReturn> FindAttributesProvider<TType, TReturn>(this IncrementalGeneratorInitializationContext context,
                                                                    Type attributeType,
                                                                    Func<SyntaxNode, CancellationToken, bool> additionalPredicate,
-                                                                   Func<TypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
+                                                                   Func<ResultTypeAttributeSyntaxContext, CancellationToken, TReturn> transform,
                                                                    IncrementalValueProvider<ImmutableArray<AttributeSyntaxContext>>? attributeProvider = null) where TType : MemberDeclarationSyntax
     {
         return context.HandleFindAttributesProvide<TType, TReturn>(attributeType, additionalPredicate, transform, attributeProvider);
@@ -110,7 +110,7 @@ public static class FindByAttributeProviders
     public static IncrementalValuesProvider<TReturn> HandleFindAttributesProvide<TType, TReturn>(this IncrementalGeneratorInitializationContext context,
                                                             Type attributeType,
                                                             Func<SyntaxNode, CancellationToken, bool>? additionalPredicate,
-                                                            Func<TypeAttributeSyntaxContext, CancellationToken, TReturn?> transform,
+                                                            Func<ResultTypeAttributeSyntaxContext, CancellationToken, TReturn?> transform,
                                                             IncrementalValueProvider<ImmutableArray<AttributeSyntaxContext>>? attributeProvider = null)
                                                             where TType : MemberDeclarationSyntax
     {
@@ -145,7 +145,7 @@ public static class FindByAttributeProviders
                     var x = default(TReturn);
                     return x;
                 }
-                return transform(new TypeAttributeSyntaxContext(ctx.Node, symbol, ctx.SemanticModel, attributeList.ToImmutableArray()), cancellationToken);
+                return transform(new ResultTypeAttributeSyntaxContext(ctx.Node, symbol, ctx.SemanticModel, attributeList.ToImmutableArray()), cancellationToken);
             }
         ).Where(x => x is not null)!;
     }

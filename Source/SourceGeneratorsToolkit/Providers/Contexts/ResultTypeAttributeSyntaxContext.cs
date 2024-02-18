@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 
 namespace SourceGeneratorsToolkit.Providers.Contexts;
-public class TypeAttributeSyntaxContext(
+public class ResultTypeAttributeSyntaxContext(
     SyntaxNode targetNode,
     ISymbol targetSymbol,
     SemanticModel semanticModel,
