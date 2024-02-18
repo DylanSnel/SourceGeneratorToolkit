@@ -18,9 +18,4 @@
 	</ItemGroup>
 
 
-	<ItemGroup>
-		<!-- Ensure the output of this project is treated as an analyzer by consumer projects -->
-		<Analyzer Include="$(OutputPath)\$(AssemblyName).dll" />
-	</ItemGroup>
-
 </Project>
