@@ -18,12 +18,12 @@
 	</ItemGroup>
 
 	
-	<ItemGroup>
+	<!--<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 		<Compile Remove="nupkgs\**" />
 		<EmbeddedResource Remove="nupkgs\**" />
 		<None Remove="nupkgs\**" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 </Project>
