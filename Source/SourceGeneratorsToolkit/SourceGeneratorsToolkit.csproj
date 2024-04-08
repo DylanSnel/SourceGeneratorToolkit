@@ -7,7 +7,7 @@
 		<LangVersion>Latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IncludeBuildOutput>true</IncludeBuildOutput>
 		<PackageOutputPath>./nupkgs</PackageOutputPath>
 		<RepositoryUrl>https://github.com/DylanSnel/SourceGeneratorsToolkit</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
