@@ -12,6 +12,7 @@
 		<RepositoryUrl>https://github.com/DylanSnel/SourceGeneratorsToolkit</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>2.0.3</Version>
+		<DevelopmentDependency>true</DevelopmentDependency>
 
 	</PropertyGroup>
 
