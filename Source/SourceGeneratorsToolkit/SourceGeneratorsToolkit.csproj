@@ -7,10 +7,11 @@
 		<LangVersion>Latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<PackageOutputPath>./nupkgs</PackageOutputPath>
 		<RepositoryUrl>https://github.com/DylanSnel/SourceGeneratorsToolkit</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>2.0.0</Version>
+		<Version>2.0.1</Version>
 
 	</PropertyGroup>
 
@@ -20,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 
 	</ItemGroup>
