@@ -34,7 +34,7 @@ public static class PropertyDeclarationExtensions
     public static bool HasProtectedSetter(this PropertyDeclarationSyntax propertyDeclarationSyntax)
     {
         return propertyDeclarationSyntax.AccessorList?.Accessors.Any(x =>
-            x.IsKind(SyntaxKind.SetAccessorDeclaration) &&
+            x.IsKind(SyntaxKind.SetAccessorDeclaration) || x.IsKind(SyntaxKind.InitAccessorDeclaration) &&
             x.Modifiers.Any(m => m.IsKind(SyntaxKind.ProtectedKeyword))
         ) ?? false;
     }
