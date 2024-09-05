@@ -11,7 +11,7 @@
 		<PackageOutputPath>./nupkgs</PackageOutputPath>
 		<RepositoryUrl>https://github.com/DylanSnel/SourceGeneratorsToolkit</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>2.0.7</Version>
+		<Version>2.0.8</Version>
 		<DevelopmentDependency>true</DevelopmentDependency>
 
 	</PropertyGroup>
